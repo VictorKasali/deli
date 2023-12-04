@@ -1,4 +1,4 @@
-apiVersion: vpcresources.k8s.aws/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: deliwebapp
@@ -13,7 +13,7 @@ spec:
     metadata:
       labels:
         app: deliwebapp
-  spec:
+      spec:
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
@@ -24,10 +24,10 @@ spec:
                 values:
                 - amd64
                 - arm64
-  containers:
-      - name: deliwebapp
-        image: victork01/deliwebapp:latest
-        ports:
-        - containerPort: 8080
-  imagePullSecrets:
+    containers:
+        - name: deliwebapp
+          image: victork01/deliwebapp:latest
+          ports:
+          - containerPort: 8080
+    imagePullSecrets:
         - name: regcred
