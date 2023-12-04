@@ -1,4 +1,4 @@
-apiVersion: v1beta1
+apiVersion: vpcresources.k8s.aws/v1beta1
 kind: Deployment
 metadata:
   name: deliwebapp
