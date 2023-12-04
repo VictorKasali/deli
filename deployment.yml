@@ -17,5 +17,5 @@ spec:
         image: victork01/deliwebapp:latest
         ports:
         - containerPort: 8080
-        imagePullSecrets:
+    imagePullSecrets:
       - name: regcred
