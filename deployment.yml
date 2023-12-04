@@ -1,7 +1,9 @@
 apiVersion: apps/v1
-kind: deployments
+kind: Deployment
 metadata:
   name: deliwebapp
+  labels:
+    app: deliwebapp
 spec:
   replicas: 3
   selector:
@@ -11,11 +13,21 @@ spec:
     metadata:
       labels:
         app: deliwebapp
-    spec:
-    containers:
+  spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: beta.kubernetes.io/arch
+                operator: In
+                values:
+                - amd64
+                - arm64
+  containers:
       - name: deliwebapp
         image: victork01/deliwebapp:latest
         ports:
         - containerPort: 8080
-    imagePullSecrets:
-      - name: regcred
+  imagePullSecrets:
+        - name: regcred
