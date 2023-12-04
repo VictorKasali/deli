@@ -22,7 +22,7 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 sh 'echo $PATH'
-                sh 'export PATH=/usr/local/bin/kubectl:$PATH && kubectl apply -f deployment.yml'
+                sh 'export PATH=/usr/local/bin/kubectl:$PATH && kubectl apply -f deliapp.yml'
                 sh 'kubectl apply -f service.yml'
             }
         }
