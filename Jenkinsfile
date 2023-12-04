@@ -21,7 +21,8 @@ pipeline {
         }
         stage('Deploy to Kubernetes') {
             steps {
-                sh 'export PATH=/home/ubuntu/bin:$PATH && kubectl apply -f deployment.yml'
+                sh 'echo $PATH'
+                sh 'sudo export PATH=/home/ubuntu/bin/kubectl:$PATH && kubectl apply -f deployment.yml'
                 sh 'kubectl apply -f service.yml'
             }
         }
